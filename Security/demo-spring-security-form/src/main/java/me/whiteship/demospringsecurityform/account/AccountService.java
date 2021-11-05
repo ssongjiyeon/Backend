@@ -5,6 +5,7 @@ import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -12,6 +13,9 @@ public class AccountService implements UserDetailsService {
 
 	@Autowired
 	AccountRepository accountRepository;
+	
+	@Autowired
+	PasswordEncoder passwordEncoder;
 	
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
@@ -27,11 +31,8 @@ public class AccountService implements UserDetailsService {
 				.build();
 	}
 
-	public Account createNew(Account account) {
-//		이렇게 인코딩 설정을 할 수도 있고 account안에서도 할 수 있음
-//		account.setPassword("{noop}" + account.getPassword());
-		
-		account.encodePassword();
+	public Account createNew(Account account) {		
+		account.encodePassword(passwordEncoder);
 		return this.accountRepository.save(account);
 	}
 }

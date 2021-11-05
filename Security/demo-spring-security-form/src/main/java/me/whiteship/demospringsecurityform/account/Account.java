@@ -5,6 +5,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
+import org.springframework.security.crypto.password.PasswordEncoder;
+
 @Entity
 public class Account {
 	
@@ -51,8 +53,8 @@ public class Account {
 		this.role = role;
 	}
 	
-	public void encodePassword() { // 이렇게 하드코딩하는게 아니라 passwordencoding 하는게 있음
-		this.password = "{noop}" + this.password;
+	public void encodePassword(PasswordEncoder passwordEncoder) { 
+		this.password = passwordEncoder.encode(this.password);
 	}
 
 }

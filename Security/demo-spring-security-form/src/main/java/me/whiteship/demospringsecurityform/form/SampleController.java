@@ -51,4 +51,12 @@ public class SampleController {
 		
 		return "admin";
 	}
+	
+
+	@GetMapping("/user")
+	public String user(Model model, Principal principal) { // 인증된 사용자 + 역할이 admin인 사람만 접근 가능
+		model.addAttribute("message", "hello user " + principal.getName());
+		
+		return "user";
+	}
 }

@@ -71,11 +71,20 @@ public class SampleController {
 		return new Callable<String>() {
 
 			@Override
-			public String call() throws Exception {
+			public String call() throws Exception { // preprocess
 				SecurityLogger.log("Callable");
 				return "Async Handler";
 			}
 			
 		};
+	}
+	
+	@GetMapping("/async-service")
+	@ResponseBody
+	public String asyncService() {
+		SecurityLogger.log("MVC, Service");
+		sampleService.asyncService();
+		SecurityLogger.log("after Service");
+		return "Async Service";
 	}
 }

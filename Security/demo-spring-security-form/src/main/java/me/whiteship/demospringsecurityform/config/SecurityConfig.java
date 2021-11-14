@@ -62,6 +62,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 				.and()
 			.httpBasic();
 		
+		http.logout()
+				.logoutSuccessUrl("/");
+		
 		// 현재 쓰레드에서 하위쓰레드로 공유 가능
 		SecurityContextHolder.setStrategyName(SecurityContextHolder.MODE_INHERITABLETHREADLOCAL);
 	}

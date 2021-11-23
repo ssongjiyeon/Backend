@@ -15,17 +15,7 @@ public class JpaMain {
 		tx.begin();
 		
 		try {
-			// 생성
-//			Member member = new Member();
-//			
-//			member.setId(2L);
-//			member.setName("helloa");
 			
-			// 조회
-			Member findMember = em.find(Member.class, 1L);
-			findMember.setName("helloa");
-			
-//			em.persist(findMember);
 			tx.commit();
 		} catch(Exception e) {
 			tx.rollback();

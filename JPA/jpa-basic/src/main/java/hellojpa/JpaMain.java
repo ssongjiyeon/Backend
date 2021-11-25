@@ -1,5 +1,7 @@
 package hellojpa;
 
+import java.util.List;
+
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
@@ -23,7 +25,8 @@ public class JpaMain {
 			member.setName("member1");
 			member.setTeam(team);
 			
-			
+			Member findMember = em.find(Member.class, member.getId());
+			List<Member> members = findMember.getTeam().getMembers();
 			
 			tx.commit();
 		} catch(Exception e) {

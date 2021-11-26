@@ -17,16 +17,9 @@ public class JpaMain {
 		tx.begin();
 		
 		try {
-			Team team = new Team();
-			team.setName("TeamA");
-			em.persist(team);
-
-			Member member = new Member();
-			member.setName("member1");
-			member.setTeam(team);
+			Movie movie = new Movie();
 			
-			Member findMember = em.find(Member.class, member.getId());
-			List<Member> members = findMember.getTeam().getMembers();
+			
 			
 			tx.commit();
 		} catch(Exception e) {

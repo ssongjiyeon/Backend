@@ -26,8 +26,6 @@ public class AllBeanTest {
 
         assertThat(discountService).isInstanceOf(DiscountService.class);
         assertThat(discountPrice).isEqualTo(1000);
-
-        
     }
 
     static class DiscountService {

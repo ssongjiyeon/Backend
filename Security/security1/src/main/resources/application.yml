@@ -14,11 +14,6 @@ spring:
     username: ssafy
     password: ssafy
 
-  mvc:
-    view:
-      prefix: /templates/
-      suffix: .mustache
-
   jpa:
     hibernate:
       ddl-auto: create #create update none

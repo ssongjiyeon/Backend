@@ -23,7 +23,7 @@ public class PrincipalDetails implements UserDetails {
             public String getAuthority() {
                 return user.getRole();
             }
-        })
+        });
         return collect;
     }
 
@@ -54,7 +54,6 @@ public class PrincipalDetails implements UserDetails {
 
     @Override
     public boolean isEnabled() { // 계정 활성화되어 있는지
-        // 1년동안 로그인 안 한 회원 휴면계정으로 변경
         return true;
     }
 }

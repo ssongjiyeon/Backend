@@ -26,6 +26,10 @@ public class User {
 
     private String role; //ROLE_USER, ROLE_ADMIN
 
+    private String provider; // google, naver
+
+    private String providerId; // sub값
+
     @CreationTimestamp
     private Timestamp createDate;
 }

@@ -26,7 +26,7 @@ public class PrincipalOauth2UserService extends DefaultOAuth2UserService {
         System.out.println("oAuth2User.getAttributes() = " + oAuth2User.getAttributes());
 
         // 회원가입
-        String provider = userRequest.getClientRegistration().getClientId(); // google
+        String provider = userRequest.getClientRegistration().getRegistrationId(); // google
         String providerId = oAuth2User.getAttribute("sub");
         String email = oAuth2User.getAttribute("email");
         String username = provider + "_" + providerId; // 충돌 방지용

@@ -1,6 +1,8 @@
 package com.cos.security1.config.oauth;
 
 import com.cos.security1.config.auth.PrincipalDetails;
+import com.cos.security1.config.auth.provider.GoogleUserInfo;
+import com.cos.security1.config.auth.provider.OAuth2UserInfo;
 import com.cos.security1.model.User;
 import com.cos.security1.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,9 +28,16 @@ public class PrincipalOauth2UserService extends DefaultOAuth2UserService {
         System.out.println("oAuth2User.getAttributes() = " + oAuth2User.getAttributes());
 
         // 회원가입
-        String provider = userRequest.getClientRegistration().getRegistrationId(); // google
-        String providerId = oAuth2User.getAttribute("sub");
-        String email = oAuth2User.getAttribute("email");
+        OAuth2UserInfo oAuth2UserInfo = null;
+        if(userRequest.getClientRegistration().getRegistrationId().equals("google")) {
+            oAuth2UserInfo = new GoogleUserInfo(oAuth2User.getAttributes());
+        } else if(userRequest.getClientRegistration().getRegistrationId().equals("naver")) {
+
+        }
+
+        String provider = oAuth2UserInfo.getProvider(); // google
+        String providerId = oAuth2UserInfo.getProviderId();
+        String email = oAuth2UserInfo.getEmail();
         String username = provider + "_" + providerId; // 충돌 방지용
         String password = bCryptPasswordEncoder.encode("ㅁㅁㅁㅁ");// oauth로 로그인하면 필요없는데 그냥 만들어 줌
         String role = "ROLE_USER";
